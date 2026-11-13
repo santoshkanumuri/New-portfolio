@@ -4,9 +4,15 @@ A one-page portfolio for Santosh Kanumuri. It's a single `index.html` with no bu
 
 ## The idea
 
-The page centres on one timeline that runs from about 1455 to today. Grey marks above the line are moments when machines took on more of our reading, counting, finding or answering: Braille, Snow's cholera map, Hollerith's census, ELIZA, the relational model, PDF, WCAG, RAG, MCP. Orange marks below the line are Santosh's own work. At full scale they're squeezed into the last few pixels. Press **Last 10 years**, or step through with **Later →**, and the axis zooms in until they're readable.
+The page centres on one timeline that runs from about 1455 to today. Grey marks above the line are moments when machines took on more of our reading, counting, finding or answering: Braille, Snow's cholera map, Hollerith's census, ELIZA, the relational model, PDF, WCAG, RAG, MCP. Orange marks below the line are Santosh's own work.
 
-Each work entry links back to the moments it descends from. Each moment links forward to the work that continues it.
+The scale is linear and honest, so at full width his work is one tight orange stack at the far right. **Zoom in to my work** pulls the stack apart. The line has three views (the last 571, 75 and 10 years), and stepping through with **Later →** moves between them on its own.
+
+- Marks that would overlap stack away from the line instead, so every one stays visible and clickable.
+- Names appear as small flags wherever there is room. Hover or focus any other mark to see its name.
+- Each work entry links back to the moments it descends from. Each moment links forward to the work that continues it.
+
+The rest of the page:
 
 - **Work**: eight systems, each with *How it works* (the pipeline), *Tested against* (the real-world numbers), *Lineage* and *Built with*.
 - **Built to find out**: side projects listed as the questions that started them.
@@ -25,6 +31,6 @@ Open `index.html` in a browser. To host it on GitHub Pages: **Settings → Pages
 
 ## Editing
 
-- Timeline moments live in the `EVENTS` array near the bottom of `index.html`. `y` is a fractional year, and every world event has a `src` link.
+- Timeline moments live in the `EVENTS` array near the bottom of `index.html`. `y` is a fractional year, `name` is the short flag text, and every world event has a `src` link.
 - Work entries are the `<li id="w-…">` blocks. Side projects are the `<li id="q-…">` blocks.
 - Colours and type are the tokens at the top of the `<style>` block.

@@ -22,6 +22,7 @@
   --world: #6B7275;
   --me: #B0440A;
   --me-wash: rgba(176, 68, 10, 0.10);
+  --pole: #A9AEA9;
   --focus: #15181A;
 
   --font-text: "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
@@ -31,7 +32,7 @@
   --t-base: 1.0625rem;
   --t-md: 1.25rem;
   --t-lg: clamp(1.5rem, 1.2rem + 1.2vw, 2rem);
-  --t-xl: clamp(2.1rem, 1.3rem + 3.4vw, 3.75rem);
+  --t-xl: clamp(2.1rem, 1.3rem + 3.4vw, 3.5rem);
 
   --measure: 42rem;
   --wide: 70rem;
@@ -46,6 +47,7 @@
     --world: #8A9396;
     --me: #FFA552;
     --me-wash: rgba(255, 165, 82, 0.12);
+    --pole: #47515A;
     --focus: #E6E8E3;
     color-scheme: dark;
   }
@@ -59,6 +61,7 @@
   --world: #8A9396;
   --me: #FFA552;
   --me-wash: rgba(255, 165, 82, 0.12);
+  --pole: #47515A;
   --focus: #E6E8E3;
   color-scheme: dark;
 }
@@ -99,7 +102,7 @@ p { margin: 0; text-wrap: pretty; }
 .top {
   max-width: var(--wide); margin: 0 auto;
   display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between;
-  gap: .75rem 1.5rem; padding-block: 1.5rem 0;
+  gap: .75rem 1.5rem; padding-block: 1.25rem 0;
 }
 .name { font-weight: 700; text-decoration: none; letter-spacing: .01em; }
 .name:hover { color: var(--ink); }
@@ -119,13 +122,21 @@ p { margin: 0; text-wrap: pretty; }
 #theme-label { min-width: 7ch; }
 
 /* ---------- hero ---------- */
-.hero { max-width: var(--wide); margin: 0 auto; padding-block: clamp(2.5rem, 6vw, 4.5rem) 2rem; display: grid; gap: 1.5rem; }
-.kicker { font-family: var(--font-mono); font-size: var(--t-sm); color: var(--ink-2); letter-spacing: .02em; }
+.hero {
+  max-width: var(--wide); margin: 0 auto; padding-block: clamp(2rem, 5vw, 3.5rem) 1.75rem;
+  display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: 1.25rem clamp(2rem, 5vw, 4.5rem); align-items: end;
+}
+.kicker { grid-column: 1 / -1; font-family: var(--font-mono); font-size: var(--t-sm); color: var(--ink-2); letter-spacing: .02em; }
 .kicker .lamp { display: inline-block; width: .55em; height: .55em; border-radius: 50%; background: var(--me); margin-right: .55em; vertical-align: .08em; }
 h1 { font-size: var(--t-xl); font-weight: 300; line-height: 1.08; letter-spacing: -0.02em; max-width: 21ch; }
 h1 em { font-style: normal; color: var(--me); }
-.lede { font-size: var(--t-md); line-height: 1.55; color: var(--ink-2); max-width: 38rem; }
+.lede { font-size: 1.125rem; line-height: 1.55; color: var(--ink-2); max-width: 38rem; padding-bottom: .3rem; }
 .lede strong { color: var(--ink); font-weight: 600; }
+@media (max-width: 900px) {
+  .hero { grid-template-columns: minmax(0, 1fr); }
+  .lede { font-size: var(--t-md); padding-bottom: 0; }
+}
 
 /* ---------- sections ---------- */
 section { scroll-margin-top: 1.5rem; }
@@ -135,62 +146,94 @@ h2 { font-size: var(--t-lg); font-weight: 500; line-height: 1.2; letter-spacing:
 .sec-head p { color: var(--ink-2); }
 
 /* ---------- timeline ---------- */
-.tl { max-width: var(--wide); margin: 0 auto; padding-block: 1rem 0; }
-.tl-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 1rem 2rem; margin-bottom: 1.75rem; }
-.tl-head .sec-head { margin: 0; }
-.tl-head h2 { font-weight: 400; }
+.tl { max-width: var(--wide); margin: 0 auto; padding-block: .75rem 0; --wl: 78px; --ml: 116px; }
+.tl-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 1rem 2rem; margin-bottom: 1.25rem; }
+.tl-head h2 { font-weight: 400; max-width: var(--measure); }
 .tl-head h2 .n { font-family: var(--font-mono); font-weight: 500; font-size: .92em; letter-spacing: -0.02em; }
-.legend { display: flex; flex-wrap: wrap; gap: .25rem 1.25rem; font-size: var(--t-sm); color: var(--ink-2); }
-.legend span { display: inline-flex; align-items: center; gap: .45rem; }
-.legend i { width: 9px; height: 9px; border-radius: 50%; border: 1.5px solid var(--world); background: var(--bg); display: inline-block; }
-.legend i.me { background: var(--me); border-color: var(--me); }
+.zoom { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem .75rem; }
+.zoom-l { font-family: var(--font-mono); font-size: var(--t-sm); color: var(--ink-2); }
 
 .seg { display: inline-flex; border: 1px solid var(--rule); border-radius: 999px; padding: 3px; gap: 2px; }
-.seg button { border: 0; background: transparent; color: var(--ink-2); padding: .4rem .85rem; border-radius: 999px; cursor: pointer; font-family: var(--font-mono); font-size: var(--t-sm); white-space: nowrap; }
+.seg button { border: 0; background: transparent; color: var(--ink-2); padding: .4rem .85rem; border-radius: 999px; cursor: pointer; font-family: var(--font-mono); font-size: var(--t-sm); white-space: nowrap; font-variant-numeric: tabular-nums; }
 .seg button:hover { color: var(--ink); }
 .seg button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
 
 .tl-body { display: grid; grid-template-columns: 3.25rem minmax(0, 1fr); }
-.tl-lanes { display: grid; grid-template-rows: 4.5rem 4.5rem 1.75rem; font-family: var(--font-mono); font-size: 0.75rem; color: var(--ink-2); }
-.tl-lanes span { align-self: center; }
+.tl-lanes { display: grid; grid-template-rows: var(--wl) var(--ml) 1.75rem; font-family: var(--font-mono); font-size: 0.75rem; }
+.tl-lanes .lw { align-self: end; padding-bottom: 7px; color: var(--ink-2); }
+.tl-lanes .lm { align-self: start; padding-top: 7px; color: var(--me); }
 .tl-frame { position: relative; padding-inline: 14px; min-width: 0; }
-.tl-track { position: relative; height: 10.75rem; }
+.tl-track { position: relative; height: calc(var(--wl) + var(--ml) + 1.75rem); }
 .tl-grid { position: absolute; top: 0; bottom: 1.75rem; width: 1px; background: var(--rule); opacity: .7; }
 .tl-tick { position: absolute; bottom: 0; height: 1.75rem; transform: translateX(-50%); font-family: var(--font-mono); font-size: 0.75rem; color: var(--ink-2); font-variant-numeric: tabular-nums; line-height: 1.75rem; white-space: nowrap; transition: opacity .25s ease; }
 .tl-tick.enter { opacity: 0; }
-.tl-axis { position: absolute; left: 0; top: 4.5rem; height: 0; border-top: 1.5px solid var(--ink); }
-.tl-future { position: absolute; right: 0; top: 4.5rem; height: 0; border-top: 1.5px dashed var(--world); }
+.tl-axis { position: absolute; left: 0; top: var(--wl); height: 0; border-top: 1.5px solid var(--ink); }
+.tl-future { position: absolute; right: 0; top: var(--wl); height: 0; border-top: 1.5px dashed var(--world); }
 .tl-cursor { position: absolute; top: 0; bottom: 1.75rem; width: 0; border-left: 1px solid var(--me); opacity: .65; pointer-events: none; }
-.tl-cursor::after { content: ""; position: absolute; left: -4px; top: 4.5rem; width: 7px; height: 7px; margin-top: -3.5px; border-radius: 50%; background: var(--me); }
-.tl-dot {
-  position: absolute; width: 26px; height: 26px; margin: -13px 0 0 -13px; padding: 0;
-  border: 0; background: transparent; cursor: pointer; border-radius: 50%;
-}
-.tl-dot.world { top: 2.25rem; }
-.tl-dot.me { top: 6.75rem; }
-.tl-dot::before { content: ""; position: absolute; inset: 8px; border-radius: 50%; border: 1.5px solid var(--world); background: var(--bg); transition: inset .2s ease, border-color .2s ease; }
-.tl-dot.me::before { background: var(--me); border-color: var(--me); }
-.tl-dot:hover::before { inset: 6px; border-color: var(--ink); }
-.tl-dot[aria-current="true"]::before { inset: 4px; border-width: 2px; border-color: var(--ink); box-shadow: 0 0 0 4px var(--me-wash); }
-.tl-dot.me[aria-current="true"]::before { border-color: var(--me); background: var(--bg); box-shadow: inset 0 0 0 3px var(--me), 0 0 0 4px var(--me-wash); }
-.tl-dot:focus-visible { outline-offset: 0; border-radius: 50%; }
+.tl-cursor::after { content: ""; position: absolute; left: -4px; top: var(--wl); width: 7px; height: 7px; margin-top: -3.5px; border-radius: 50%; background: var(--me); }
 
-.tl-caption { display: grid; grid-template-columns: minmax(0, 11rem) minmax(0, 1fr); gap: .5rem 2rem; margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--rule); min-height: 10.5rem; align-content: start; }
+/* marks: crowded ones stack away from the line instead of overlapping */
+.tl-dot {
+  position: absolute; width: 18px; height: 18px; margin: -9px 0 0 -9px; padding: 0;
+  border: 0; background: transparent; cursor: pointer; border-radius: 50%;
+  transition: top .28s ease;
+}
+.tl-dot::before { content: ""; position: absolute; inset: 4px; border-radius: 50%; border: 1.5px solid var(--world); background: var(--bg); transition: inset .2s ease, border-color .2s ease; }
+.tl-dot.me::before { background: var(--me); border-color: var(--me); }
+.tl-dot:hover::before, .tl-dot:focus-visible::before { inset: 3px; border-color: var(--ink); }
+.tl-dot[aria-current="true"] { z-index: 3; }
+.tl-dot[aria-current="true"]::before { inset: 2px; border-width: 2px; border-color: var(--ink); box-shadow: 0 0 0 4px var(--me-wash); }
+.tl-dot.me[aria-current="true"]::before { border-color: var(--me); background: var(--bg); box-shadow: inset 0 0 0 3px var(--me), 0 0 0 4px var(--me-wash); }
+.tl-dot:focus-visible { outline-offset: 0; border-radius: 50%; z-index: 4; }
+
+/* flags: a name on a pole, shown wherever there is room */
+.tl-flag {
+  position: absolute; display: flex; font-family: var(--font-mono); font-size: .75rem; line-height: 14px;
+  color: var(--ink-2); white-space: nowrap; opacity: 0; pointer-events: none; user-select: none;
+  transition: opacity .3s ease, color .15s ease, border-color .15s ease;
+}
+.tl-flag > span { pointer-events: none; cursor: pointer; }
+.tl-flag.on { opacity: 1; }
+.tl-flag.on > span { pointer-events: auto; }
+.tl-flag.world { align-items: flex-start; }
+.tl-flag.me { align-items: flex-end; }
+.tl-flag.right { border-left: 1px solid var(--pole); padding-left: 5px; }
+.tl-flag.left { border-right: 1px solid var(--pole); padding-right: 5px; transform: translateX(-100%); }
+.tl-flag.hot, .tl-flag.sel, .tl-flag:has(> span:hover) { color: var(--ink); border-color: var(--ink-2); }
+.tl-flag.me.sel { color: var(--me); border-color: var(--me); }
+.tl-note {
+  position: absolute; transform: translate(-100%, -50%); padding: 2px 0;
+  font-family: var(--font-mono); font-size: .75rem; color: var(--me); white-space: nowrap;
+  cursor: pointer; opacity: 0; pointer-events: none; user-select: none; transition: opacity .3s ease;
+}
+.tl-note.on { opacity: 1; pointer-events: auto; }
+.tl-note:hover { text-decoration: underline; text-underline-offset: .2em; }
+.tl-track.is-zooming .tl-flag, .tl-track.is-zooming .tl-note { opacity: 0; transition-duration: .12s; }
+.tl-tip {
+  position: absolute; z-index: 6; background: var(--ink); color: var(--bg); border-radius: 4px;
+  font-family: var(--font-mono); font-size: .75rem; line-height: 1; padding: .35rem .5rem;
+  white-space: nowrap; pointer-events: none; opacity: 0; transition: opacity .12s ease;
+}
+.tl-tip.on { opacity: 1; }
+
+.tl-caption { display: grid; grid-template-columns: minmax(0, 15rem) minmax(0, 1fr); gap: .5rem 2rem; margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--rule); min-height: 10.5rem; align-content: start; }
 .tl-when { display: grid; gap: .2rem; align-content: start; }
 .tl-who { font-family: var(--font-mono); font-size: var(--t-sm); color: var(--ink-2); text-transform: uppercase; letter-spacing: .08em; }
 .tl-who.me { color: var(--me); }
-.tl-year { font-size: clamp(1.75rem, 1.3rem + 1.6vw, 2.5rem); font-weight: 300; line-height: 1.1; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+.tl-year { font-size: clamp(1.75rem, 1.3rem + 1.6vw, 2.25rem); font-weight: 300; line-height: 1.1; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; white-space: nowrap; }
 .tl-text { font-size: var(--t-md); line-height: 1.5; max-width: 36rem; }
 .tl-more { margin-top: .6rem; font-size: var(--t-sm); color: var(--ink-2); display: flex; flex-wrap: wrap; gap: .25rem 1rem; }
-.tl-more a, .tl-more button { color: var(--ink-2); }
-.tl-more button { background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; text-decoration-color: var(--world); text-underline-offset: .2em; font-size: inherit; }
-.tl-more button:hover { color: var(--me); text-decoration-color: var(--me); }
+.tl-more a { color: var(--ink-2); }
+.textbtn { background: none; border: 0; padding: 0; cursor: pointer; color: var(--ink-2); font-size: var(--t-sm); text-decoration: underline; text-decoration-color: var(--world); text-decoration-thickness: 1px; text-underline-offset: .2em; }
+.textbtn:hover { color: var(--me); text-decoration-color: var(--me); }
 .tl-nav { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem 1rem; margin-top: 1rem; }
 .btn { display: inline-flex; align-items: center; gap: .4rem; border: 1px solid var(--rule); background: transparent; border-radius: 999px; padding: .5rem 1rem; cursor: pointer; font-family: var(--font-mono); font-size: var(--t-sm); color: var(--ink); text-decoration: none; }
 .btn:hover:not(:disabled) { border-color: var(--ink); color: var(--ink); }
 .btn:disabled { opacity: .4; cursor: default; }
 .btn.solid { background: var(--ink); color: var(--bg); border-color: var(--ink); }
 .btn.solid:hover:not(:disabled) { color: var(--bg); background: var(--me); border-color: var(--me); }
+.btn.accent { background: var(--me); color: var(--bg); border-color: var(--me); }
+.btn.accent:hover:not(:disabled) { color: var(--bg); background: var(--ink); border-color: var(--ink); }
 .count { font-family: var(--font-mono); font-size: var(--t-sm); color: var(--ink-2); font-variant-numeric: tabular-nums; }
 
 .alllist { margin-top: 1.5rem; }
@@ -202,6 +245,16 @@ details > summary { cursor: pointer; }
 .alllist li .d { font-family: var(--font-mono); font-size: var(--t-sm); color: var(--ink-2); font-variant-numeric: tabular-nums; padding-top: .1rem; }
 .alllist li.me .d { color: var(--me); }
 .alllist li a { color: var(--ink-2); font-size: var(--t-sm); white-space: nowrap; }
+
+@media (max-width: 720px) {
+  .top nav { order: 3; flex-basis: 100%; }
+  .tl { --wl: 70px; --ml: 92px; }
+  .tl-dot::before { inset: 5px; }
+  .tl-dot:hover::before, .tl-dot:focus-visible::before { inset: 4px; }
+  .tl-dot[aria-current="true"]::before { inset: 3px; }
+  .tl-flag { font-size: .6875rem; line-height: 13px; }
+  .tl-note { font-size: .6875rem; }
+}
 
 /* ---------- work ---------- */
 .work { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rule); }
@@ -321,20 +374,21 @@ footer .rule { border-top: 1px solid var(--rule); margin-bottom: 1.25rem; }
 
   <section class="tl" id="timeline" aria-labelledby="tl-h">
     <div class="tl-head">
-      <div class="sec-head">
-        <h2 id="tl-h"><span class="n" id="span-years">571</span> years of machines learning to read, count, find and answer</h2>
-        <div class="legend" aria-hidden="true"><span><i></i>The world, above the line</span><span><i class="me"></i>My work, below it</span></div>
-      </div>
-      <div class="seg" role="group" aria-label="Timeline zoom">
-        <button type="button" id="z-full" aria-pressed="true">Since c. 1455</button>
-        <button type="button" id="z-near" aria-pressed="false">Last 10 years</button>
+      <h2 id="tl-h"><span class="n" id="span-years">571</span> years of machines learning to read, count, find and answer</h2>
+      <div class="zoom" role="group" aria-labelledby="zoom-l">
+        <span class="zoom-l" id="zoom-l">Show the last</span>
+        <div class="seg">
+          <button type="button" id="z-full" aria-pressed="true">571 years</button>
+          <button type="button" id="z-mid" aria-pressed="false">75 years</button>
+          <button type="button" id="z-near" aria-pressed="false">10 years</button>
+        </div>
       </div>
     </div>
 
     <div class="tl-body">
-      <div class="tl-lanes" aria-hidden="true"><span>World</span><span>Me</span><span></span></div>
+      <div class="tl-lanes" aria-hidden="true"><span class="lw">World</span><span class="lm">Me</span><span></span></div>
       <div class="tl-frame">
-        <div class="tl-track" id="tl-track" role="group" aria-label="Timeline. Use the left and right arrow keys to move between moments."></div>
+        <div class="tl-track" id="tl-track" role="group" aria-label="Timeline. The world's moments sit above the line and my work below it. Use the left and right arrow keys to move between moments."></div>
       </div>
     </div>
 
@@ -344,12 +398,14 @@ footer .rule { border-top: 1px solid var(--rule); margin-bottom: 1.25rem; }
         <span class="tl-year" id="cap-year">c. 1455 → now</span>
       </div>
       <div>
-        <p class="tl-text" id="cap-text">Each grey mark is a moment when machines took on a little more of our reading, counting, finding or answering. My work is the orange marks, squeezed into the last few pixels on the right. Step through them in order, or zoom in.</p>
+        <p class="tl-text" id="cap-text">Each grey mark is a moment when machines took on a little more of our reading, counting, finding or answering. The orange stack at the far right is everything I've built so far. Zoom in to pull it apart.</p>
         <div class="tl-more" id="cap-more"></div>
         <div class="tl-nav">
-          <button class="btn" type="button" id="prev" disabled>← Earlier</button>
-          <button class="btn solid" type="button" id="next">Start the walk →</button>
+          <button class="btn" type="button" id="prev" hidden>← Earlier</button>
+          <button class="btn accent" type="button" id="jump">Zoom in to my work →</button>
+          <button class="btn" type="button" id="next">Walk through every moment →</button>
           <span class="count" id="count" aria-live="off"></span>
+          <button class="textbtn" type="button" id="skip" hidden>Skip to my work</button>
         </div>
       </div>
     </div>
@@ -595,56 +651,65 @@ footer .rule { border-top: 1px solid var(--rule); margin-bottom: 1.25rem; }
   var Y = today.getFullYear();
   var NOW = Y + (today - new Date(Y, 0, 1)) / (new Date(Y + 1, 0, 1) - new Date(Y, 0, 1));
   var monthName = today.toLocaleString("en-US", { month: "short" });
-  document.getElementById("span-years").textContent = String(Y - 1455);
+  var SPAN = Y - 1455;
+  document.getElementById("span-years").textContent = String(SPAN);
 
   /* ---------- events: y is a fractional year; every world event carries its source ---------- */
   var EVENTS = [
-    { id: "gutenberg", y: 1455, d: "c. 1455", who: "world", text: "The Gutenberg Bible is printed in Mainz. Copying text stops being only a scribe's job.", src: "https://en.wikipedia.org/wiki/Gutenberg_Bible", go: ["w-syllabus"] },
-    { id: "sothebys", y: 1744.19, d: "Mar 1744", who: "world", text: "Samuel Baker, a London bookseller, founds the auction house that becomes Sotheby's.", src: "https://en.wikipedia.org/wiki/Sotheby%27s", go: ["w-art"] },
-    { id: "braille", y: 1829, d: "1829", who: "world", text: "Louis Braille publishes his raised-dot writing system. Reading no longer needs sight.", src: "https://en.wikipedia.org/wiki/Braille", go: ["w-pdf", "w-audits"] },
-    { id: "snow", y: 1854.66, d: "Aug 1854", who: "world", text: "During a cholera outbreak in Soho, John Snow traces the deaths to one water pump on Broad Street. The handle comes off, and he later maps the cases around it.", src: "https://en.wikipedia.org/wiki/1854_Broad_Street_cholera_outbreak", go: ["w-map"] },
-    { id: "reference", y: 1883, d: "1883", who: "world", text: "The Boston Public Library starts hiring librarians whose main job is answering readers' questions.", src: "https://en.wikipedia.org/wiki/Reference_desk", go: ["w-askraider"] },
-    { id: "hollerith", y: 1890, d: "1890", who: "world", text: "Herman Hollerith's punched-card machines tabulate the US Census.", src: "https://en.wikipedia.org/wiki/Herman_Hollerith", go: ["w-research", "w-loans"] },
-    { id: "warburg", y: 1927.92, d: "Dec 1927", who: "world", text: "Aby Warburg starts his picture atlas, Mnemosyne: nearly 1,000 images pinned to black-cloth panels, grouped by theme, with almost no captions.", src: "https://en.wikipedia.org/wiki/Aby_Warburg", go: ["w-art"] },
-    { id: "eliza", y: 1966.0, d: "Jan 1966", who: "world", text: "Joseph Weizenbaum publishes ELIZA, a program that holds a typed conversation by matching patterns. It understands nothing.", src: "https://doi.org/10.1145/365153.365168", go: ["w-askraider"] },
-    { id: "codd", y: 1970.42, d: "Jun 1970", who: "world", text: "Edgar F. Codd proposes the relational model: data kept in tables, joined by keys, and queried by what you want rather than where it is stored.", src: "https://doi.org/10.1145/362384.362685", go: ["w-research", "w-loans"] },
-    { id: "kurzweil", y: 1976.03, d: "Jan 1976", who: "world", text: "The Kurzweil Reading Machine reads printed pages aloud to blind readers. It covers a tabletop.", src: "https://en.wikipedia.org/wiki/Kurzweil_Computer_Products", go: ["w-pdf"] },
-    { id: "wanderer", y: 1993.42, d: "Jun 1993", who: "world", text: "Matthew Gray's World Wide Web Wanderer, probably the first web robot, starts measuring the web.", src: "https://en.wikipedia.org/wiki/World_Wide_Web_Wanderer", go: ["w-research"] },
-    { id: "pdf", y: 1993.45, d: "Jun 1993", who: "world", text: "Adobe releases the Portable Document Format: a page that looks the same on every computer.", src: "https://en.wikipedia.org/wiki/PDF", go: ["w-pdf"] },
-    { id: "wcag", y: 1999.34, d: "May 1999", who: "world", text: "The W3C publishes WCAG 1.0, the first Web Content Accessibility Guidelines.", src: "https://www.w3.org/TR/WAI-WEBCONTENT/", go: ["w-audits"] },
-    { id: "gmaps", y: 2005.1, d: "Feb 2005", who: "world", text: "Google Maps launches. A map you can drag, zoom and search becomes ordinary.", src: "https://en.wikipedia.org/wiki/Google_Maps", go: ["w-map"] },
-    { id: "alexnet", y: 2012.75, d: "2012", who: "world", text: "AlexNet wins the ImageNet challenge by a wide margin, and neural networks start to see.", src: "https://en.wikipedia.org/wiki/AlexNet", go: ["w-art"] },
-    { id: "transformer", y: 2017.45, d: "Jun 2017", who: "world", text: "“Attention Is All You Need” introduces the Transformer, the architecture behind today's language models.", src: "https://arxiv.org/abs/1706.03762", go: [] },
-    { id: "rag", y: 2020.39, d: "May 2020", who: "world", text: "Lewis and colleagues describe retrieval-augmented generation (RAG): a model that looks things up before it answers.", src: "https://arxiv.org/abs/2005.11401", go: ["w-askraider"] },
-    { id: "systema", y: 2021.5, d: "Jul 2021", who: "me", text: "Python developer intern at Systema Automation. A real-time metrics dashboard handling 5,000+ data points a day.", go: ["path"] },
-    { id: "pwc", y: 2022.5, d: "Jul 2022", who: "me", text: "Full-stack developer at PwC India, on Citibank's loan document tracking system.", go: ["w-loans"] },
-    { id: "chatgpt", y: 2022.91, d: "Nov 2022", who: "world", text: "ChatGPT is released. Talking to a language model becomes ordinary.", src: "https://openai.com/index/chatgpt/", go: [] },
-    { id: "ttu", y: 2023.58, d: "Aug 2023", who: "me", text: "MS in Computer Science at Texas Tech, and a graduate assistant job building vector search, research agents and ETL pipelines.", go: ["w-art", "w-research"] },
-    { id: "coursesync", y: 2024.67, d: "Sep 2024", who: "me", text: "CourseSync: a tracker that tells students the moment a seat opens in a full course.", go: ["q-coursesync"] },
-    { id: "mri", y: 2024.84, d: "Nov 2024", who: "me", text: "Staging Alzheimer's from MRI scans with a zero-shot vision-language model (ZLaP), without task-specific labels.", go: ["q-mri"] },
-    { id: "mcp", y: 2024.9, d: "Nov 2024", who: "world", text: "Anthropic open-sources the Model Context Protocol, a standard way to connect models to data and tools.", src: "https://www.anthropic.com/news/model-context-protocol", go: ["w-askraider"] },
-    { id: "askproto", y: 2025.09, d: "Feb 2025", who: "me", text: "The first ASK_RAIDER prototype: retrieval over Texas Tech's documents with LangChain, Chroma and MCP.", go: ["w-askraider"] },
-    { id: "analyst", y: 2025.37, d: "May 2025", who: "me", text: "MS finished, GPA 3.85. I become Programmer Analyst III at Texas Tech and technical lead on the university's AI applications.", go: ["w-pdf", "w-map", "w-audits", "w-syllabus"] },
-    { id: "now", y: NOW, d: "Now, " + monthName + " " + Y, who: "me", text: "Looking for a team that builds with AI models to solve everyday business problems.", go: ["contact"] }
+    { id: "gutenberg", name: "Gutenberg Bible", y: 1455, d: "c. 1455", who: "world", text: "The Gutenberg Bible is printed in Mainz. Copying text stops being only a scribe's job.", src: "https://en.wikipedia.org/wiki/Gutenberg_Bible", go: ["w-syllabus"] },
+    { id: "sothebys", name: "Sotheby's", y: 1744.19, d: "Mar 1744", who: "world", text: "Samuel Baker, a London bookseller, founds the auction house that becomes Sotheby's.", src: "https://en.wikipedia.org/wiki/Sotheby%27s", go: ["w-art"] },
+    { id: "braille", name: "Braille", y: 1829, d: "1829", who: "world", text: "Louis Braille publishes his raised-dot writing system. Reading no longer needs sight.", src: "https://en.wikipedia.org/wiki/Braille", go: ["w-pdf", "w-audits"] },
+    { id: "snow", name: "Snow's pump", y: 1854.66, d: "Aug 1854", who: "world", text: "During a cholera outbreak in Soho, John Snow traces the deaths to one water pump on Broad Street. The handle comes off, and he later maps the cases around it.", src: "https://en.wikipedia.org/wiki/1854_Broad_Street_cholera_outbreak", go: ["w-map"] },
+    { id: "reference", name: "Reference desk", y: 1883, d: "1883", who: "world", text: "The Boston Public Library starts hiring librarians whose main job is answering readers' questions.", src: "https://en.wikipedia.org/wiki/Reference_desk", go: ["w-askraider"] },
+    { id: "hollerith", name: "Hollerith's census", y: 1890, d: "1890", who: "world", text: "Herman Hollerith's punched-card machines tabulate the US Census.", src: "https://en.wikipedia.org/wiki/Herman_Hollerith", go: ["w-research", "w-loans"] },
+    { id: "warburg", name: "Warburg's atlas", y: 1927.92, d: "Dec 1927", who: "world", text: "Aby Warburg starts his picture atlas, Mnemosyne: nearly 1,000 images pinned to black-cloth panels, grouped by theme, with almost no captions.", src: "https://en.wikipedia.org/wiki/Aby_Warburg", go: ["w-art"] },
+    { id: "eliza", name: "ELIZA", y: 1966.0, d: "Jan 1966", who: "world", text: "Joseph Weizenbaum publishes ELIZA, a program that holds a typed conversation by matching patterns. It understands nothing.", src: "https://doi.org/10.1145/365153.365168", go: ["w-askraider"] },
+    { id: "codd", name: "Relational model", y: 1970.42, d: "Jun 1970", who: "world", text: "Edgar F. Codd proposes the relational model: data kept in tables, joined by keys, and queried by what you want rather than where it is stored.", src: "https://doi.org/10.1145/362384.362685", go: ["w-research", "w-loans"] },
+    { id: "kurzweil", name: "Kurzweil reader", y: 1976.03, d: "Jan 1976", who: "world", text: "The Kurzweil Reading Machine reads printed pages aloud to blind readers. It covers a tabletop.", src: "https://en.wikipedia.org/wiki/Kurzweil_Computer_Products", go: ["w-pdf"] },
+    { id: "wanderer", name: "First web robot", y: 1993.42, d: "Jun 1993", who: "world", text: "Matthew Gray's World Wide Web Wanderer, probably the first web robot, starts measuring the web.", src: "https://en.wikipedia.org/wiki/World_Wide_Web_Wanderer", go: ["w-research"] },
+    { id: "pdf", name: "PDF", y: 1993.45, d: "Jun 1993", who: "world", text: "Adobe releases the Portable Document Format: a page that looks the same on every computer.", src: "https://en.wikipedia.org/wiki/PDF", go: ["w-pdf"] },
+    { id: "wcag", name: "WCAG 1.0", y: 1999.34, d: "May 1999", who: "world", text: "The W3C publishes WCAG 1.0, the first Web Content Accessibility Guidelines.", src: "https://www.w3.org/TR/WAI-WEBCONTENT/", go: ["w-audits"] },
+    { id: "gmaps", name: "Google Maps", y: 2005.1, d: "Feb 2005", who: "world", text: "Google Maps launches. A map you can drag, zoom and search becomes ordinary.", src: "https://en.wikipedia.org/wiki/Google_Maps", go: ["w-map"] },
+    { id: "alexnet", name: "AlexNet", y: 2012.75, d: "2012", who: "world", text: "AlexNet wins the ImageNet challenge by a wide margin, and neural networks start to see.", src: "https://en.wikipedia.org/wiki/AlexNet", go: ["w-art"] },
+    { id: "transformer", name: "Transformer", y: 2017.45, d: "Jun 2017", who: "world", text: "“Attention Is All You Need” introduces the Transformer, the architecture behind today's language models.", src: "https://arxiv.org/abs/1706.03762", go: [] },
+    { id: "rag", name: "RAG", y: 2020.39, d: "May 2020", who: "world", text: "Lewis and colleagues describe retrieval-augmented generation (RAG): a model that looks things up before it answers.", src: "https://arxiv.org/abs/2005.11401", go: ["w-askraider"] },
+    { id: "systema", name: "Systema", y: 2021.5, d: "Jul 2021", who: "me", text: "Python developer intern at Systema Automation. A real-time metrics dashboard handling 5,000+ data points a day.", go: ["path"] },
+    { id: "pwc", name: "PwC", y: 2022.5, d: "Jul 2022", who: "me", text: "Full-stack developer at PwC India, on Citibank's loan document tracking system.", go: ["w-loans"] },
+    { id: "chatgpt", name: "ChatGPT", y: 2022.91, d: "Nov 2022", who: "world", text: "ChatGPT is released. Talking to a language model becomes ordinary.", src: "https://openai.com/index/chatgpt/", go: [] },
+    { id: "ttu", name: "MS starts", y: 2023.58, d: "Aug 2023", who: "me", text: "MS in Computer Science at Texas Tech, and a graduate assistant job building vector search, research agents and ETL pipelines.", go: ["w-art", "w-research"] },
+    { id: "coursesync", name: "CourseSync", y: 2024.67, d: "Sep 2024", who: "me", text: "CourseSync: a tracker that tells students the moment a seat opens in a full course.", go: ["q-coursesync"] },
+    { id: "mri", name: "MRI staging", y: 2024.84, d: "Nov 2024", who: "me", text: "Staging Alzheimer's from MRI scans with a zero-shot vision-language model (ZLaP), without task-specific labels.", go: ["q-mri"] },
+    { id: "mcp", name: "MCP", y: 2024.9, d: "Nov 2024", who: "world", text: "Anthropic open-sources the Model Context Protocol, a standard way to connect models to data and tools.", src: "https://www.anthropic.com/news/model-context-protocol", go: ["w-askraider"] },
+    { id: "askproto", name: "ASK_RAIDER prototype", y: 2025.09, d: "Feb 2025", who: "me", text: "The first ASK_RAIDER prototype: retrieval over Texas Tech's documents with LangChain, Chroma and MCP.", go: ["w-askraider"] },
+    { id: "analyst", name: "Technical lead", y: 2025.37, d: "May 2025", who: "me", text: "MS finished, GPA 3.85. I become Programmer Analyst III at Texas Tech and technical lead on the university's AI applications.", go: ["w-pdf", "w-map", "w-audits", "w-syllabus"] },
+    { id: "now", name: "Now", y: NOW, d: "Now, " + monthName + " " + Y, who: "me", text: "Looking for a team that builds with AI models to solve everyday business problems.", go: ["contact"] }
   ];
   EVENTS.sort(function (a, b) { return a.y - b.y; });
   var N = EVENTS.length;
   var byId = {};
-  EVENTS.forEach(function (e, i) { byId[e.id] = i; });
+  var lanes = { world: [], me: [] };
+  EVENTS.forEach(function (e, i) { byId[e.id] = i; lanes[e.who].push(i); });
+  var firstMe = lanes.me[0];
 
-  var NEAR_START = 2016.6;
-  var FULL = { a: 1440, b: NOW + (NOW - 1440) * 0.025 };
-  var NEAR = { a: NEAR_START, b: NOW + 0.9 };
-  var view = { a: FULL.a, b: FULL.b };
+  /* ---------- three views of the same line ---------- */
+  var VIEWS = {
+    full: { a: 1440, b: NOW + (NOW - 1440) * 0.025 },
+    mid: { a: NOW - 75.5, b: NOW + 2.2 },
+    near: { a: NOW - 10.25, b: NOW + 0.9 }
+  };
+  function levelFor(y) { return y >= VIEWS.near.a + 0.25 ? "near" : y >= VIEWS.mid.a + 2 ? "mid" : "full"; }
+  var view = { a: VIEWS.full.a, b: VIEWS.full.b };
   var zoom = "full";
-  var active = -1;
-  var raf = 0;
+  var active = -1, hotIdx = -1, pendingFocus = -1;
+  var raf = 0, animating = false, lastW = 1, G = null;
+  var mqCompact = window.matchMedia ? window.matchMedia("(max-width: 720px)") : null;
 
   var track = document.getElementById("tl-track");
-  var grids = document.createElement("div");
-  var axis = document.createElement("div"); axis.className = "tl-axis";
-  var future = document.createElement("div"); future.className = "tl-future";
-  var cursor = document.createElement("div"); cursor.className = "tl-cursor"; cursor.style.visibility = "hidden";
+  function make(tag, cls) { var n = document.createElement(tag); n.className = cls; return n; }
+  var grids = make("div", "");
+  var axis = make("div", "tl-axis");
+  var future = make("div", "tl-future");
+  var cursor = make("div", "tl-cursor"); cursor.style.visibility = "hidden";
   track.appendChild(grids); track.appendChild(axis); track.appendChild(future); track.appendChild(cursor);
 
   function titleOf(targetId) {
@@ -654,16 +719,34 @@ footer .rule { border-top: 1px solid var(--rule); margin-bottom: 1.25rem; }
     return t ? t.textContent : targetId;
   }
 
+  var pos = EVENTS.map(function () { return { x: 0, y: 0, row: 0, vis: false, piled: false }; });
+  var flagW = [], flagOn = [];
+  var flags = EVENTS.map(function (e, i) {
+    var f = make("span", "tl-flag " + e.who);
+    f.setAttribute("aria-hidden", "true");
+    var s = document.createElement("span"); s.textContent = e.name;
+    s.addEventListener("click", function () { select(i, false); });
+    f.appendChild(s); track.appendChild(f);
+    flagOn.push(false);
+    return f;
+  });
   var dots = EVENTS.map(function (e, i) {
-    var b = document.createElement("button");
+    var b = make("button", "tl-dot " + e.who);
     b.type = "button";
-    b.className = "tl-dot " + e.who;
     b.tabIndex = i === 0 ? 0 : -1;
     b.setAttribute("aria-label", e.d + ", " + (e.who === "me" ? "my work" : "the world") + ": " + e.text);
     b.addEventListener("click", function () { select(i, false); });
+    b.addEventListener("mouseenter", function () { hot(i, true); });
+    b.addEventListener("mouseleave", function () { hot(i, false); });
+    b.addEventListener("focus", function () { hot(i, true); });
+    b.addEventListener("blur", function () { hot(i, false); });
     track.appendChild(b);
     return b;
   });
+  var note = make("span", "tl-note"); note.setAttribute("aria-hidden", "true"); note.textContent = "My work: zoom in →";
+  note.addEventListener("click", function () { jumpToWork(); });
+  var tip = make("span", "tl-tip"); tip.setAttribute("aria-hidden", "true");
+  track.appendChild(note); track.appendChild(tip);
 
   /* full list, for reading and for sources */
   var list = document.getElementById("tl-list");
@@ -681,41 +764,73 @@ footer .rule { border-top: 1px solid var(--rule); margin-bottom: 1.25rem; }
     list.appendChild(li);
   });
 
-  /* ---------- scale + ticks ---------- */
+  /* ---------- geometry: distances are measured outward from the line ---------- */
+  function readGeom() {
+    var c = !!(mqCompact && mqCompact.matches);
+    G = c ? { B: 14, RP: 10, T: 10, R: 4, LP: 14, LH: 13 } : { B: 16, RP: 13, T: 13, R: 5, LP: 15, LH: 14 };
+    var cs = getComputedStyle(track);
+    G.WL = parseFloat(cs.getPropertyValue("--wl")) || (c ? 70 : 78);
+    G.ML = parseFloat(cs.getPropertyValue("--ml")) || (c ? 92 : 116);
+    function rows(h) { return Math.max(1, Math.floor((h - G.B - G.R - 1) / G.RP) + 1); }
+    function levels(h) { return Math.max(1, Math.min(4, Math.floor((h - 1 - G.B - G.R - 7 - G.LH) / G.LP) + 1)); }
+    G.cap = { world: rows(G.WL), me: rows(G.ML) };
+    G.K = { world: levels(G.WL), me: levels(G.ML) };
+  }
+  function measureFlags() { flags.forEach(function (f, i) { flagW[i] = f.firstChild.offsetWidth; }); }
+
+  /* ---------- scale, stacking and ticks ---------- */
   var tickEls = {};
   function niceStep(span, w) {
-    var target = Math.max(3, Math.floor(w / 78));
+    var target = Math.max(3, Math.floor(w / 72));
     var steps = [1, 2, 5, 10, 20, 25, 50, 100, 200];
     for (var i = 0; i < steps.length; i++) if (span / steps[i] <= target) return steps[i];
     return 200;
   }
   function render() {
-    var w = track.clientWidth || 1;
-    var a = view.a, b = view.b, span = b - a;
-    function x(y) { return (y - a) / span; }
+    var W = track.clientWidth || 1; lastW = W;
+    var a = view.a, b = view.b, span = b - a, AX = G.WL;
+    function frac(y) { return (y - a) / span; }
 
-    dots.forEach(function (el, i) {
-      var px = x(EVENTS[i].y);
-      el.style.left = (px * 100) + "%";
-      el.style.visibility = (px < -0.01 || px > 1.01) ? "hidden" : "visible";
+    ["world", "me"].forEach(function (lane) {
+      var ids = lanes[lane], last = [], cap = G.cap[lane], sgn = lane === "world" ? -1 : 1, n, p;
+      for (n = 0; n < ids.length; n++) {
+        p = pos[ids[n]];
+        p.x = frac(EVENTS[ids[n]].y) * W;
+        p.vis = p.x > -4 && p.x < W + 4;
+        var r = 0;
+        if (p.vis) {
+          while (r < cap - 1 && last[r] !== undefined && p.x - last[r] < G.T) r++;
+          last[r] = p.x;
+        }
+        p.row = r;
+        p.y = AX + sgn * (G.B + r * G.RP);
+        var el = dots[ids[n]];
+        el.style.left = p.x.toFixed(1) + "px";
+        el.style.top = p.y + "px";
+        el.style.visibility = p.vis ? "visible" : "hidden";
+      }
+      for (n = 0; n < ids.length; n++) {
+        p = pos[ids[n]];
+        var pv = n > 0 ? pos[ids[n - 1]] : null, nx2 = n < ids.length - 1 ? pos[ids[n + 1]] : null;
+        p.piled = !!((pv && pv.vis && p.x - pv.x < G.T) || (nx2 && nx2.vis && nx2.x - p.x < G.T));
+      }
     });
 
-    var nx = Math.max(0, Math.min(1, x(NOW)));
-    axis.style.width = (nx * 100) + "%";
-    future.style.left = (nx * 100) + "%";
+    var nowX = Math.max(0, Math.min(1, frac(NOW)));
+    axis.style.width = (nowX * 100) + "%";
+    future.style.left = (nowX * 100) + "%";
 
-    if (active >= 0) {
-      var cx = x(EVENTS[active].y);
-      cursor.style.left = (cx * 100) + "%";
-      cursor.style.visibility = (cx < 0 || cx > 1) ? "hidden" : "visible";
+    if (active >= 0 && pos[active].vis) {
+      cursor.style.left = pos[active].x.toFixed(1) + "px";
+      cursor.style.visibility = "visible";
     } else {
       cursor.style.visibility = "hidden";
     }
 
-    var st = niceStep(span, w);
+    var st = niceStep(span, W);
     var want = {};
     for (var yy = Math.ceil(a / st) * st; yy <= b; yy += st) {
-      var px = x(yy);
+      var px = frac(yy);
       if (px < 0.035 || px > 0.965) continue;
       want[yy] = px;
     }
@@ -725,8 +840,8 @@ footer .rule { border-top: 1px solid var(--rule); margin-bottom: 1.25rem; }
     Object.keys(want).forEach(function (k) {
       var rec = tickEls[k];
       if (!rec) {
-        var t = document.createElement("span"); t.className = "tl-tick enter"; t.textContent = k; t.setAttribute("aria-hidden", "true");
-        var g = document.createElement("span"); g.className = "tl-grid"; g.setAttribute("aria-hidden", "true");
+        var t = make("span", "tl-tick enter"); t.textContent = k; t.setAttribute("aria-hidden", "true");
+        var g = make("span", "tl-grid"); g.setAttribute("aria-hidden", "true");
         grids.appendChild(g); grids.appendChild(t);
         rec = tickEls[k] = { t: t, g: g };
         requestAnimationFrame(function () { t.classList.remove("enter"); });
@@ -734,11 +849,116 @@ footer .rule { border-top: 1px solid var(--rule); margin-bottom: 1.25rem; }
       rec.t.style.left = (want[k] * 100) + "%";
       rec.g.style.left = (want[k] * 100) + "%";
     });
+
+    if (!animating) settle();
+  }
+
+  /* runs whenever the line is at rest: names, tab stop, pending focus */
+  function settle() {
+    placeFlags();
+    placeNote();
+    var stop = -1;
+    if (active >= 0 && pos[active].vis) stop = active;
+    else for (var i = 0; i < N; i++) if (pos[i].vis) { stop = i; break; }
+    dots.forEach(function (d, j) { d.tabIndex = j === stop ? 0 : -1; });
+    if (pendingFocus >= 0 && pos[pendingFocus].vis) { var pf = pendingFocus; pendingFocus = -1; dots[pf].focus({ preventScroll: true }); }
+    if (hotIdx >= 0) hot(hotIdx, true);
+  }
+
+  /* a flag is a name on a pole. Place them right to left, each at the first level that touches nothing. */
+  function clearOf(self, px, x0, x1, d0, d1, pd0, rects, poles, laneDots) {
+    var j, r, m = G.R + 3;
+    for (j = 0; j < rects.length; j++) {
+      r = rects[j];
+      if (x0 < r.x1 + 6 && x1 > r.x0 - 6 && d0 < r.d1 && d1 > r.d0) return false;
+      if (px > r.x0 - 4 && px < r.x1 + 4 && pd0 < r.d1 && d1 > r.d0) return false;
+    }
+    for (j = 0; j < poles.length; j++) {
+      r = poles[j];
+      if (r.x > x0 - 4 && r.x < x1 + 4 && d0 < r.d1 && d1 > r.d0) return false;
+    }
+    for (j = 0; j < laneDots.length; j++) {
+      r = laneDots[j];
+      if (r.i === self) continue;
+      if (r.x + m > x0 && r.x - m < x1 && r.d + m > d0 && r.d - m < d1) return false;
+    }
+    return true;
+  }
+  function placeFlags() {
+    var W = lastW, PAD = 12, AX = G.WL;
+    ["world", "me"].forEach(function (lane) {
+      var K = G.K[lane], up = lane === "world";
+      var rects = [], poles = [], laneDots = [];
+      var ids = lanes[lane].slice().reverse();
+      ids.forEach(function (i) { if (pos[i].vis) laneDots.push({ i: i, x: pos[i].x, d: G.B + pos[i].row * G.RP }); });
+      ids.forEach(function (i) {
+        var p = pos[i], f = flags[i], ok = false;
+        if (p.vis && !p.piled) {
+          var w = flagW[i] + 6, pd0 = G.B + G.R + 2;
+          for (var dir = 0; dir < 2 && !ok; dir++) {
+            var x0 = dir === 0 ? p.x : p.x - w, x1 = x0 + w;
+            if (x0 < -PAD || x1 > W + PAD) continue;
+            for (var k = 0; k < K && !ok; k++) {
+              var d0 = G.B + G.R + 7 + k * G.LP, d1 = d0 + G.LH;
+              if (!clearOf(i, p.x, x0, x1, d0, d1, pd0, rects, poles, laneDots)) continue;
+              ok = true;
+              rects.push({ x0: x0, x1: x1, d0: d0, d1: d1 });
+              poles.push({ x: p.x, d0: pd0, d1: d1 });
+              f.className = "tl-flag " + lane + (dir === 0 ? " right" : " left") + " on" + (i === active ? " sel" : "");
+              f.style.left = Math.round(p.x) + "px";
+              f.style.top = (up ? AX - d1 : AX + pd0) + "px";
+              f.style.height = (d1 - pd0) + "px";
+            }
+          }
+        }
+        if (!ok) { f.classList.remove("on"); f.classList.remove("sel"); f.classList.remove("hot"); }
+        flagOn[i] = ok;
+      });
+    });
+  }
+  /* when my marks are still one tight stack, label the stack and offer the zoom right there */
+  function placeNote() {
+    var n = 0, minX = Infinity, maxX = -Infinity, maxRow = 0;
+    lanes.me.forEach(function (i) {
+      var p = pos[i];
+      if (!p.vis) return;
+      n++; minX = Math.min(minX, p.x); maxX = Math.max(maxX, p.x); maxRow = Math.max(maxRow, p.row);
+    });
+    var show = n >= 3 && maxRow >= 2 && maxX - minX < 48 && minX > 150;
+    if (show) {
+      note.style.left = (minX - 14) + "px";
+      note.style.top = (G.WL + G.B + maxRow * G.RP / 2) + "px";
+    }
+    note.classList.toggle("on", show);
+  }
+
+  /* hover or focus: light up the flag if the mark has one, otherwise show a small tag */
+  function hideTip() { tip.classList.remove("on"); }
+  function hot(i, on) {
+    if (!on) {
+      flags[i].classList.remove("hot");
+      if (hotIdx === i) { hotIdx = -1; hideTip(); }
+      return;
+    }
+    hotIdx = i;
+    if (animating || !pos[i].vis) return;
+    if (flagOn[i]) { flags[i].classList.add("hot"); hideTip(); return; }
+    var e = EVENTS[i], p = pos[i];
+    tip.textContent = e.d + " · " + e.name;
+    var w = tip.offsetWidth, h = tip.offsetHeight;
+    tip.style.left = Math.max(-12, Math.min(lastW + 12 - w, p.x - w / 2)) + "px";
+    tip.style.top = (e.who === "world" ? p.y - 12 - h : p.y + 12) + "px";
+    tip.classList.add("on");
   }
 
   function animateTo(target) {
     cancelAnimationFrame(raf);
-    if (reduce) { view = { a: target.a, b: target.b }; render(); return; }
+    hideTip();
+    if (reduce) {
+      animating = false; track.classList.remove("is-zooming");
+      view = { a: target.a, b: target.b }; render(); return;
+    }
+    animating = true; track.classList.add("is-zooming");
     var from = { a: view.a, b: view.b };
     var s0 = from.b - from.a, s1 = target.b - target.a;
     var t0 = performance.now(), D = 1200;
@@ -748,28 +968,30 @@ footer .rule { border-top: 1px solid var(--rule); margin-bottom: 1.25rem; }
       var span = s0 * Math.pow(s1 / s0, e);
       var b = from.b + (target.b - from.b) * e;
       view = { a: b - span, b: b };
+      if (t >= 1) { animating = false; track.classList.remove("is-zooming"); }
       render();
       if (t < 1) raf = requestAnimationFrame(stepFn);
     }
     raf = requestAnimationFrame(stepFn);
   }
 
-  var zFull = document.getElementById("z-full"), zNear = document.getElementById("z-near");
+  var zBtn = { full: document.getElementById("z-full"), mid: document.getElementById("z-mid"), near: document.getElementById("z-near") };
+  zBtn.full.textContent = SPAN + " years";
   function setZoom(z) {
     if (z === zoom) return;
     zoom = z;
-    zFull.setAttribute("aria-pressed", String(z === "full"));
-    zNear.setAttribute("aria-pressed", String(z === "near"));
-    animateTo(z === "full" ? FULL : NEAR);
+    Object.keys(zBtn).forEach(function (k) { zBtn[k].setAttribute("aria-pressed", String(k === z)); });
+    animateTo(VIEWS[z]);
   }
-  zFull.addEventListener("click", function () { setZoom("full"); });
-  zNear.addEventListener("click", function () { setZoom("near"); });
+  Object.keys(zBtn).forEach(function (k) { zBtn[k].addEventListener("click", function () { setZoom(k); }); });
 
   /* ---------- selection + caption ---------- */
   var capWho = document.getElementById("cap-who"), capYear = document.getElementById("cap-year");
   var capText = document.getElementById("cap-text"), capMore = document.getElementById("cap-more");
   var prev = document.getElementById("prev"), next = document.getElementById("next"), count = document.getElementById("count");
+  var jump = document.getElementById("jump"), skip = document.getElementById("skip");
   var live = document.getElementById("tl-live");
+  next.textContent = "Walk through all " + N + " →";
 
   function goTo(targetId) {
     var el = document.getElementById(targetId);
@@ -786,17 +1008,14 @@ footer .rule { border-top: 1px solid var(--rule); margin-bottom: 1.25rem; }
   function select(i, moveFocus) {
     active = i;
     var e = EVENTS[i];
-    dots.forEach(function (d, j) {
-      d.setAttribute("aria-current", j === i ? "true" : "false");
-      d.tabIndex = j === i ? 0 : -1;
-    });
+    dots.forEach(function (d, j) { d.setAttribute("aria-current", j === i ? "true" : "false"); });
     capWho.textContent = e.who === "me" ? "My work" : "The world";
     capWho.className = "tl-who " + e.who;
     capYear.textContent = e.d;
     capText.textContent = e.text;
     capMore.textContent = "";
     (e.go || []).forEach(function (t) {
-      var btn = document.createElement("button");
+      var btn = make("button", "textbtn");
       btn.type = "button";
       btn.textContent = (t === "contact" ? "Get in touch" : t === "path" ? "See the path" : "Continues in: " + titleOf(t));
       btn.addEventListener("click", function () { goTo(t); });
@@ -806,25 +1025,38 @@ footer .rule { border-top: 1px solid var(--rule); margin-bottom: 1.25rem; }
       var a = document.createElement("a"); a.href = e.src; a.target = "_blank"; a.rel = "noopener"; a.textContent = "Source ↗";
       capMore.appendChild(a);
     }
+    jump.hidden = true;
+    prev.hidden = false;
     prev.disabled = i <= 0;
     next.disabled = i >= N - 1;
+    next.className = "btn solid";
     next.textContent = "Later →";
+    skip.hidden = i >= firstMe;
     count.textContent = (i + 1) + " of " + N;
     live.textContent = moveFocus ? "" : e.d + ". " + e.text;
 
-    if (e.y >= NEAR_START && zoom === "full") setZoom("near");
-    else if (e.y < NEAR_START && zoom === "near") setZoom("full");
-    else render();
-
-    if (moveFocus) dots[i].focus({ preventScroll: true });
+    if (moveFocus) {
+      if (pos[i].vis) dots[i].focus({ preventScroll: true });
+      else pendingFocus = i;
+    }
+    var lvl = levelFor(e.y);
+    if (lvl !== zoom) setZoom(lvl); else render();
+  }
+  function jumpToWork() {
+    select(firstMe, false);
+    next.focus({ preventScroll: true });
   }
 
   prev.addEventListener("click", function () { if (active > 0) select(active - 1, false); });
   next.addEventListener("click", function () { select(Math.min(N - 1, active + 1), false); });
+  jump.addEventListener("click", jumpToWork);
+  skip.addEventListener("click", jumpToWork);
   track.addEventListener("keydown", function (ev) {
-    var k = ev.key, i = active < 0 ? 0 : active, n = null;
-    if (k === "ArrowRight" || k === "ArrowDown") n = active < 0 ? 0 : Math.min(N - 1, i + 1);
-    else if (k === "ArrowLeft" || k === "ArrowUp") n = Math.max(0, i - 1);
+    var cur = dots.indexOf(document.activeElement);
+    if (cur < 0) return;
+    var k = ev.key, n = null;
+    if (k === "ArrowRight" || k === "ArrowDown") n = Math.min(N - 1, cur + 1);
+    else if (k === "ArrowLeft" || k === "ArrowUp") n = Math.max(0, cur - 1);
     else if (k === "Home") n = 0;
     else if (k === "End") n = N - 1;
     if (n !== null) { ev.preventDefault(); select(n, true); }
@@ -835,14 +1067,15 @@ footer .rule { border-top: 1px solid var(--rule); margin-bottom: 1.25rem; }
       var i = byId[c.getAttribute("data-event")];
       if (i === undefined) return;
       document.getElementById("timeline").scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
-      select(i, false);
-      setTimeout(function () { dots[i].focus({ preventScroll: true }); }, reduce ? 0 : 500);
+      select(i, true);
     });
   });
 
-  if ("ResizeObserver" in window) new ResizeObserver(function () { render(); }).observe(track);
-  else window.addEventListener("resize", render);
-  render();
+  function relayout() { readGeom(); measureFlags(); render(); }
+  if ("ResizeObserver" in window) new ResizeObserver(relayout).observe(track);
+  else window.addEventListener("resize", relayout);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(relayout);
+  relayout();
 
   /* ---------- theme ---------- */
   var root = document.documentElement;
