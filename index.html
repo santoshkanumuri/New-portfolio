@@ -106,17 +106,7 @@ p { margin: 0; text-wrap: pretty; }
 .top nav ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .25rem 1.25rem; }
 .top nav a { text-decoration: none; color: var(--ink-2); font-size: var(--t-sm); font-family: var(--font-mono); }
 .top nav a:hover { color: var(--me); }
-.theme {
-  display: inline-flex; align-items: center; gap: .5rem;
-  background: none; border: 1px solid var(--rule); border-radius: 999px;
-  padding: .3rem .75rem .3rem .5rem; cursor: pointer;
-  font-family: var(--font-mono); font-size: var(--t-sm); color: var(--ink-2);
-}
-.theme:hover { border-color: var(--ink-2); color: var(--ink); }
-.theme .orb { width: 14px; height: 14px; border-radius: 50%; border: 1.5px solid currentColor; position: relative; overflow: hidden; }
-.theme .orb::after { content: ""; position: absolute; inset: 0; background: currentColor; transform: translateX(55%); border-radius: 50%; transition: transform .35s ease; }
-.theme[aria-pressed="true"] .orb::after { transform: translateX(0); }
-.theme[aria-pressed="true"] { color: var(--me); border-color: var(--me); }
+.theme button { padding: .3rem .75rem; }
 
 /* ---------- hero ---------- */
 .hero { max-width: var(--wide); margin: 0 auto; padding-block: clamp(2.5rem, 6vw, 4.5rem) 2rem; display: grid; gap: 1.5rem; }
@@ -306,7 +296,10 @@ footer .rule { border-top: 1px solid var(--rule); margin-bottom: 1.25rem; }
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
-  <button class="theme" id="theme" type="button" aria-pressed="false"><span class="orb" aria-hidden="true"></span>Evening</button>
+  <div class="seg theme" role="group" aria-label="Theme">
+    <button type="button" id="t-light" aria-pressed="true">Morning</button>
+    <button type="button" id="t-dark" aria-pressed="false">Evening</button>
+  </div>
 </header>
 
 <main id="main">
@@ -842,7 +835,8 @@ footer .rule { border-top: 1px solid var(--rule); margin-bottom: 1.25rem; }
   render();
 
   /* ---------- theme ---------- */
-  var root = document.documentElement, themeBtn = document.getElementById("theme");
+  var root = document.documentElement;
+  var tLight = document.getElementById("t-light"), tDark = document.getElementById("t-dark");
   var mq = window.matchMedia ? window.matchMedia("(prefers-color-scheme: dark)") : null;
   try { var saved = localStorage.getItem("sk-theme"); if (saved === "dark" || saved === "light") root.setAttribute("data-theme", saved); } catch (err) {}
   function isDark() {
@@ -851,13 +845,18 @@ footer .rule { border-top: 1px solid var(--rule); margin-bottom: 1.25rem; }
     if (t === "light") return false;
     return !!(mq && mq.matches);
   }
-  function syncTheme() { themeBtn.setAttribute("aria-pressed", String(isDark())); }
-  themeBtn.addEventListener("click", function () {
-    var nextTheme = isDark() ? "light" : "dark";
-    root.setAttribute("data-theme", nextTheme);
-    try { localStorage.setItem("sk-theme", nextTheme); } catch (err) {}
+  function syncTheme() {
+    var dark = isDark();
+    tDark.setAttribute("aria-pressed", String(dark));
+    tLight.setAttribute("aria-pressed", String(!dark));
+  }
+  function setTheme(t) {
+    root.setAttribute("data-theme", t);
+    try { localStorage.setItem("sk-theme", t); } catch (err) {}
     syncTheme();
-  });
+  }
+  tLight.addEventListener("click", function () { setTheme("light"); });
+  tDark.addEventListener("click", function () { setTheme("dark"); });
   if (mq && mq.addEventListener) mq.addEventListener("change", syncTheme);
   new MutationObserver(syncTheme).observe(root, { attributes: true, attributeFilter: ["data-theme"] });
   syncTheme();

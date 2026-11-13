@@ -15,7 +15,7 @@ Each work entry links back to the moments it descends from. Each moment links fo
 ## Accessibility
 
 - Body type is Atkinson Hyperlegible Next and Mono, commissioned by the Braille Institute for low-vision readers.
-- Every colour passes WCAG AA contrast in both light ("day") and dark ("evening") themes.
+- Every colour passes WCAG AA contrast in both light ("Morning") and dark ("Evening") themes, switched from the header.
 - The timeline uses a roving tabindex. Use ← → / Home / End to move between moments, and changes are announced through a polite live region. The full timeline is also available as a plain list with sources.
 - `prefers-reduced-motion` turns off the zoom animation and every transition.
 
