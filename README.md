@@ -15,7 +15,7 @@ The scale is linear and honest, so at full width his work is one tight orange st
 The rest of the page:
 
 - **Work**: eight systems, each with *How it works* (the pipeline), *Tested against* (the real-world numbers), *Lineage* and *Built with*.
-- **Built to find out** (nav: *Tinkering*): things built out of curiosity, listed as the questions that started them, led by a featured panel for Nuvori (an offline-first vault for passwords, passkeys, codes and cards across Android, Wear OS, Windows and a browser extension).
+- **Curiosities**: things built in spare time, just to find out, listed as the questions that started them, led by a featured panel for Nuvori (an offline-first vault for passwords, passkeys, codes and cards across Android, Wear OS, Windows and a browser extension).
 
 ## Accessibility
 
@@ -31,5 +31,5 @@ Open `index.html` in a browser. To host it on GitHub Pages: **Settings → Pages
 ## Editing
 
 - Timeline moments live in the `EVENTS` array near the bottom of `index.html`. `y` is a fractional year, `name` is the short flag text, and every world event has a `src` link.
-- Work entries are the `<li id="w-…">` blocks. Tinkering projects are the `<li id="q-…">` blocks.
+- Work entries are the `<li id="w-…">` blocks. Curiosities are the `<li id="q-…">` blocks.
 - Colours and type are the tokens at the top of the `<style>` block.

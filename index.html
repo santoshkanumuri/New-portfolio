@@ -248,6 +248,7 @@ details > summary { cursor: pointer; }
 
 @media (max-width: 720px) {
   .top nav { order: 3; flex-basis: 100%; }
+  .top nav ul { gap: .25rem .95rem; }
   .tl { --wl: 70px; --ml: 92px; }
   .tl-dot::before { inset: 5px; }
   .tl-dot:hover::before, .tl-dot:focus-visible::before { inset: 4px; }
@@ -298,7 +299,7 @@ details[open] > summary .pm::before { content: "\2212"; }
 .qs li:target, .flash { background: var(--me-wash); }
 .qs li, .work > li { transition: background-color .6s ease; }
 
-/* ---------- featured tinkering project ---------- */
+/* ---------- featured curiosity ---------- */
 .feature {
   display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 1.5rem clamp(1.5rem, 4vw, 3rem);
   padding: clamp(1.25rem, 3vw, 2rem); margin-bottom: 2.5rem;
@@ -368,7 +369,7 @@ main { padding-bottom: clamp(4rem, 9vw, 6rem); }
     <ul>
       <li><a href="#timeline">Timeline</a></li>
       <li><a href="#work">Work</a></li>
-      <li><a href="#questions">Tinkering</a></li>
+      <li><a href="#questions">Curiosities</a></li>
       <li><a href="#path">Path</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -586,8 +587,8 @@ main { padding-bottom: clamp(4rem, 9vw, 6rem); }
 
   <section class="sec" id="questions" aria-labelledby="q-h">
     <div class="sec-head">
-      <h2 id="q-h">Built to find out</h2>
-      <p>Things I build in my own time, out of curiosity. Each one started with a question.</p>
+      <h2 id="q-h">Curiosities</h2>
+      <p>Things I build in my own time, just to find out. Each one started with a question.</p>
     </div>
     <article class="feature" id="nuvori" aria-labelledby="nuvori-h">
       <div class="f-intro">
