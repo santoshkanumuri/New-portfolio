@@ -298,6 +298,22 @@ details[open] > summary .pm::before { content: "\2212"; }
 .qs li:target, .flash { background: var(--me-wash); }
 .qs li, .work > li { transition: background-color .6s ease; }
 
+/* ---------- featured side project ---------- */
+.feature {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 1.5rem clamp(1.5rem, 4vw, 3rem);
+  padding: clamp(1.25rem, 3vw, 2rem); margin-bottom: 2.5rem;
+  background: var(--raised); border: 1px solid var(--rule); border-radius: 10px; transition: background-color .6s ease;
+}
+.f-intro { display: grid; gap: .5rem; align-content: start; }
+.f-label { font-family: var(--font-mono); font-size: var(--t-sm); color: var(--me); text-transform: uppercase; letter-spacing: .08em; }
+.f-title { font-size: var(--t-lg); font-weight: 600; letter-spacing: -0.01em; line-height: 1.15; margin-top: .25rem; }
+.f-tag { color: var(--ink-2); font-style: italic; }
+.f-q { font-size: var(--t-md); font-weight: 300; line-height: 1.4; margin-top: .5rem; }
+.f-links { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1.25rem; margin-top: 1rem; font-family: var(--font-mono); font-size: var(--t-sm); }
+.f-links a:not(.btn) { color: var(--ink-2); }
+.feature .facts { grid-template-columns: 7.5rem minmax(0, 1fr); align-content: start; }
+.feature .chip { background: var(--bg); }
+
 /* ---------- path ---------- */
 .path { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.5rem; }
 .path li { display: grid; grid-template-columns: 11rem minmax(0, 1fr); gap: .25rem 1.5rem; }
@@ -339,6 +355,7 @@ footer .rule { border-top: 1px solid var(--rule); margin-bottom: 1.25rem; }
   .path li, .kit { grid-template-columns: minmax(0, 1fr); }
   .kit dd + dt { margin-top: .5rem; }
   .alllist li { grid-template-columns: minmax(0, 1fr); gap: .1rem; }
+  .feature, .feature .facts { grid-template-columns: minmax(0, 1fr); }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; animation: none !important; }
@@ -575,9 +592,35 @@ footer .rule { border-top: 1px solid var(--rule); margin-bottom: 1.25rem; }
       <h2 id="q-h">Built to find out</h2>
       <p>Side projects, each one started by a question.</p>
     </div>
+    <article class="feature" id="nuvori" aria-labelledby="nuvori-h">
+      <div class="f-intro">
+        <p class="f-label">Featured side project · since Sep 2026</p>
+        <h3 class="f-title" id="nuvori-h">Nuvori</h3>
+        <p class="f-tag">Yours, by design.</p>
+        <p class="f-q">Can one vault hold every password, passkey and code I have, on every device I own, with no server in the middle?</p>
+        <p class="f-links">
+          <a class="btn accent" href="https://github.com/santoshkanumuri/vault_apk#download" target="_blank" rel="noopener">Get the Android app</a>
+          <a href="https://github.com/santoshkanumuri/vault_apk" target="_blank" rel="noopener">Code</a>
+          <a href="https://santoshkanumuri.github.io/vault_apk/privacy-policy.html" target="_blank" rel="noopener">Privacy policy</a>
+        </p>
+      </div>
+      <dl class="facts">
+        <dt>Keeps</dt>
+        <dd>Passwords, passkeys, authenticator codes, cards, security questions, notes and photos, in one encrypted vault.</dd>
+        <dt>Runs on</dt>
+        <dd>Android phones, Wear OS watches and Windows PCs, plus a fill extension for Chrome, Edge and Brave.</dd>
+        <dt>Syncs</dt>
+        <dd>Directly between paired devices over local Wi-Fi. Optionally through your own Google Drive, which only ever holds encrypted files.</dd>
+        <dt>Never</dt>
+        <dd class="tested">No Nuvori account, no server, no ads, no analytics.</dd>
+        <dt>Under the hood</dt>
+        <dd class="stack">Kotlin and Jetpack Compose · SQLCipher database · Argon2id key derivation · signed, encrypted device sync · Android Autofill and passkey provider</dd>
+        <dt>Lineage</dt>
+        <dd class="chips"><button type="button" class="chip" data-event="ctss">1961 · the first computer password</button></dd>
+      </dl>
+    </article>
     <ul class="qs">
       <li id="q-tokens"><p class="q">What does a prompt cost before I send it?</p><p class="a"><b>Token Visualizer</b><a href="https://santoshkanumuri.github.io/token-visualizer/" target="_blank" rel="noopener">try it</a><a href="https://github.com/santoshkanumuri/token-visualizer" target="_blank" rel="noopener">code</a></p></li>
-      <li id="q-vault"><p class="q">Can a password vault work with no account, no server and no cloud?</p><p class="a"><b>Nuvori, an Android app</b><a href="https://github.com/santoshkanumuri/vault_apk" target="_blank" rel="noopener">code</a></p></li>
       <li id="q-pgvector"><p class="q">What's actually inside a pgvector database?</p><p class="a"><b>DB Look</b><a href="https://github.com/santoshkanumuri/pgvector_workbench" target="_blank" rel="noopener">code</a></p></li>
       <li id="q-mri"><p class="q">Can a vision-language model stage Alzheimer's from an MRI without labelled training data?</p><p class="a"><b>Zero-shot MRI staging (ZLaP)</b><span>Nov 2024</span></p></li>
       <li id="q-coursesync"><p class="q">Can I know the moment a seat opens in a full course?</p><p class="a"><b>CourseSync</b><a href="https://github.com/santoshkanumuri/course_tracker_extension" target="_blank" rel="noopener">code</a></p></li>
@@ -663,6 +706,7 @@ footer .rule { border-top: 1px solid var(--rule); margin-bottom: 1.25rem; }
     { id: "reference", name: "Reference desk", y: 1883, d: "1883", who: "world", text: "The Boston Public Library starts hiring librarians whose main job is answering readers' questions.", src: "https://en.wikipedia.org/wiki/Reference_desk", go: ["w-askraider"] },
     { id: "hollerith", name: "Hollerith's census", y: 1890, d: "1890", who: "world", text: "Herman Hollerith's punched-card machines tabulate the US Census.", src: "https://en.wikipedia.org/wiki/Herman_Hollerith", go: ["w-research", "w-loans"] },
     { id: "warburg", name: "Warburg's atlas", y: 1927.92, d: "Dec 1927", who: "world", text: "Aby Warburg starts his picture atlas, Mnemosyne: nearly 1,000 images pinned to black-cloth panels, grouped by theme, with almost no captions.", src: "https://en.wikipedia.org/wiki/Aby_Warburg", go: ["w-art"] },
+    { id: "ctss", name: "First password", y: 1961.5, d: "1961", who: "world", text: "MIT's Compatible Time-Sharing System asks each user for a password at login, the first computer system to do so.", src: "https://en.wikipedia.org/wiki/Password", go: ["nuvori"] },
     { id: "eliza", name: "ELIZA", y: 1966.0, d: "Jan 1966", who: "world", text: "Joseph Weizenbaum publishes ELIZA, a program that holds a typed conversation by matching patterns. It understands nothing.", src: "https://doi.org/10.1145/365153.365168", go: ["w-askraider"] },
     { id: "codd", name: "Relational model", y: 1970.42, d: "Jun 1970", who: "world", text: "Edgar F. Codd proposes the relational model: data kept in tables, joined by keys, and queried by what you want rather than where it is stored.", src: "https://doi.org/10.1145/362384.362685", go: ["w-research", "w-loans"] },
     { id: "kurzweil", name: "Kurzweil reader", y: 1976.03, d: "Jan 1976", who: "world", text: "The Kurzweil Reading Machine reads printed pages aloud to blind readers. It covers a tabletop.", src: "https://en.wikipedia.org/wiki/Kurzweil_Computer_Products", go: ["w-pdf"] },
@@ -682,6 +726,7 @@ footer .rule { border-top: 1px solid var(--rule); margin-bottom: 1.25rem; }
     { id: "mcp", name: "MCP", y: 2024.9, d: "Nov 2024", who: "world", text: "Anthropic open-sources the Model Context Protocol, a standard way to connect models to data and tools.", src: "https://www.anthropic.com/news/model-context-protocol", go: ["w-askraider"] },
     { id: "askproto", name: "ASK_RAIDER prototype", y: 2025.09, d: "Feb 2025", who: "me", text: "The first ASK_RAIDER prototype: retrieval over Texas Tech's documents with LangChain, Chroma and MCP.", go: ["w-askraider"] },
     { id: "analyst", name: "Technical lead", y: 2025.37, d: "May 2025", who: "me", text: "MS finished, GPA 3.85. I become Programmer Analyst III at Texas Tech and technical lead on the university's AI applications.", go: ["w-pdf", "w-map", "w-audits", "w-syllabus"] },
+    { id: "nuvori", name: "Nuvori", y: 2026.71, d: "Sep 2026", who: "me", text: "I start Nuvori: one encrypted vault for passwords, passkeys, codes and cards, across phone, watch and PC, with no server in the middle.", go: ["nuvori"] },
     { id: "now", name: "Now", y: NOW, d: "Now, " + monthName + " " + Y, who: "me", text: "Looking for a team that builds with AI models to solve everyday business problems.", go: ["contact"] }
   ];
   EVENTS.sort(function (a, b) { return a.y - b.y; });
@@ -715,7 +760,7 @@ footer .rule { border-top: 1px solid var(--rule); margin-bottom: 1.25rem; }
   function titleOf(targetId) {
     var el = document.getElementById(targetId);
     if (!el) return targetId;
-    var t = el.querySelector(".w-title, .a b, h2");
+    var t = el.querySelector(".w-title, .f-title, .a b, h2");
     return t ? t.textContent : targetId;
   }
 
