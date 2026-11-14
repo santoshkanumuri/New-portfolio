@@ -16,7 +16,6 @@ The rest of the page:
 
 - **Work**: eight systems, each with *How it works* (the pipeline), *Tested against* (the real-world numbers), *Lineage* and *Built with*.
 - **Built to find out**: side projects listed as the questions that started them, led by a featured panel for Nuvori (an offline-first vault for passwords, passkeys, codes and cards across Android, Wear OS, Windows and a browser extension).
-- **Errata**: a standing offer to correct any wrong date or number, with credit.
 
 ## Accessibility
 

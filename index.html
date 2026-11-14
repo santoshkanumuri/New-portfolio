@@ -334,11 +334,8 @@ details[open] > summary .pm::before { content: "\2212"; }
 .clock .mono { color: var(--ink); }
 .status { font-family: var(--font-mono); font-size: var(--t-sm); color: var(--me); min-height: 1.2em; }
 
-/* ---------- errata + footer ---------- */
-.errata { display: grid; gap: .75rem; max-width: var(--measure); }
-.errata .log { font-family: var(--font-mono); font-size: var(--t-sm); color: var(--ink-2); border-left: 2px solid var(--rule); padding: .25rem 0 .25rem 1rem; }
-footer { max-width: var(--wide); margin: 0 auto; padding-block: 4rem 3rem; color: var(--ink-2); font-size: var(--t-sm); display: grid; gap: .35rem; }
-footer .rule { border-top: 1px solid var(--rule); margin-bottom: 1.25rem; }
+/* ---------- page end ---------- */
+main { padding-bottom: clamp(4rem, 9vw, 6rem); }
 
 /* ---------- small screens ---------- */
 @media (max-width: 720px) {
@@ -668,21 +665,7 @@ footer .rule { border-top: 1px solid var(--rule); margin-bottom: 1.25rem; }
     </ul>
     <p class="clock" id="clock">Based in Dallas, Texas (Central Time).</p>
   </section>
-
-  <section class="sec" id="errata" aria-labelledby="errata-h">
-    <div class="errata">
-      <h2 id="errata-h">Errata</h2>
-      <p>Every historical date on this page links to a source. Facts about my own work come from my résumé and my project repositories. If you find something wrong, email me. I'll fix it and credit you here.</p>
-      <p class="log">Corrections so far: none.</p>
-    </div>
-  </section>
 </main>
-
-<footer>
-  <div class="rule"></div>
-  <p>Set in Atkinson Hyperlegible Next and Mono, typefaces the Braille Institute commissioned for readers with low vision.</p>
-  <p>One HTML file. No trackers, no cookies. Updated 14 November 2026.</p>
-</footer>
 
 <script>
 (function () {
